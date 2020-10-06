@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>转移张量链 | Zhang Qiang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;得到转移张量链的过程：1) 对关联张量链进行扩维；2) 对张量链形式下的纤求和；3) 归一化非0纤和全0纤；4) 将3)中的结果相加，得到转移张量链。 1. 将关联张量链扩成各阶同维&amp;emsp;&amp;emsp;如何对关联张量链进行扩维呢？   &amp;emsp;&amp;emsp;Step 1：求解关联张量链的所有TT核第二阶的最大维数。如上图，最大维数为I3 &#x3D; 5。 &amp;emsp;&amp;em">
+  <meta name="description" content="转移张量链">
 <meta property="og:type" content="article">
 <meta property="og:title" content="转移张量链">
 <meta property="og:url" content="http://example.com/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/index.html">
 <meta property="og:site_name" content="Zhang Qiang&#39;s Blog">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;得到转移张量链的过程：1) 对关联张量链进行扩维；2) 对张量链形式下的纤求和；3) 归一化非0纤和全0纤；4) 将3)中的结果相加，得到转移张量链。 1. 将关联张量链扩成各阶同维&amp;emsp;&amp;emsp;如何对关联张量链进行扩维呢？   &amp;emsp;&amp;emsp;Step 1：求解关联张量链的所有TT核第二阶的最大维数。如上图，最大维数为I3 &#x3D; 5。 &amp;emsp;&amp;em">
+<meta property="og:description" content="转移张量链">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/TT%E5%BD%A2%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%A1%A50%E6%93%8D%E4%BD%9C.png">
 <meta property="og:image" content="http://example.com/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/%E7%BA%A4%E6%B1%82%E5%92%8C%E8%BF%87%E7%A8%8B.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://example.com/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/0%E7%BA%A4%E5%BD%92%E4%B8%80%E5%8C%96%E8%BF%87%E7%A8%8B.png">
 <meta property="og:image" content="http://example.com/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE.png">
 <meta property="article:published_time" content="2020-10-06T07:46:39.000Z">
-<meta property="article:modified_time" content="2020-10-06T09:17:15.336Z">
+<meta property="article:modified_time" content="2020-10-06T09:27:29.606Z">
 <meta property="article:author" content="Mark Zhang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/TT%E5%BD%A2%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%A1%A50%E6%93%8D%E4%BD%9C.png">
@@ -176,10 +176,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p>&emsp;&emsp;得到转移张量链的过程：1) 对关联张量链进行扩维；2) 对张量链形式下的纤求和；3) 归一化非0纤和全0纤；4) 将3)中的结果相加，得到转移张量链。</p>
+        <h2 id="转移张量链"><a href="#转移张量链" class="headerlink" title="转移张量链 "></a>转移张量链 <a id="more"></a></h2><p>&emsp;&emsp;得到转移张量链的过程：1) 对关联张量链进行扩维；2) 对张量链形式下的纤求和；3) 归一化非0纤和全0纤；4) 将3)中的结果相加，得到转移张量链。</p>
 <h3 id="1-将关联张量链扩成各阶同维"><a href="#1-将关联张量链扩成各阶同维" class="headerlink" title="1. 将关联张量链扩成各阶同维"></a>1. 将关联张量链扩成各阶同维</h3><p>&emsp;&emsp;如何对关联张量链进行扩维呢？</p>
-
 <p><img src="/2020/10/06/%E8%BD%AC%E7%A7%BB%E5%BC%A0%E9%87%8F%E9%93%BE/TT%E5%BD%A2%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%A1%A50%E6%93%8D%E4%BD%9C.png"></p>
 <p>&emsp;&emsp;Step 1：求解关联张量链的所有TT核第二阶的最大维数。如上图，最大维数为I<del>3</del> = 5。</p>
 <p>&emsp;&emsp;Step 2：对维数小于5的TT核以补0的方式进行扩维。于是，上图中3×4×5的张量扩维成5×5×5。</p>
